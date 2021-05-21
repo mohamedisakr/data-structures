@@ -1,4 +1,4 @@
-import { Wallet } from "./wallet";
+import { Wallet } from "./wallet.js";
 
 class Person {
   // private Wallet w;
