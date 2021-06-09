@@ -51,18 +51,18 @@ LinkedList.prototype.search = function (searchValue) {
 };
 
 LinkedList.prototype.indexOf = function (val) {
-  const result = [];
+  const indexes = [];
   let index = 0;
   let currentNode = this.head;
   while (currentNode) {
     // 3 <--> 5 <--> 3 <--> 8
     if (currentNode.value === val) {
-      result.push(index);
+      indexes.push(index);
     }
     currentNode = currentNode.next;
     index++;
   }
-  return result;
+  return indexes;
 };
 
 LinkedList.prototype.print = function () {
@@ -79,11 +79,12 @@ LinkedList.prototype.print = function () {
   return contents;
 };
 
-const arr = [3, 5, 3, 8];
+// const arr = [3, 5, 3, 8];
+const arr = [1, 5, 3, 5, 8, 7, 5];
 let list = new LinkedList();
 arr.forEach((item) => list.addToTail(item));
 console.log(list.print());
-console.log(list.indexOf(arr[0]));
+console.log(list.indexOf(arr[1]));
 
 //   var myLL = new LinkedList();
 
