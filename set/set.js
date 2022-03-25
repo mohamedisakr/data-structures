@@ -76,9 +76,20 @@ function MySet() {
     return false;
   };
 
-  // is_empty(S): checks whether the set S is empty.
+  /**
+   * checks whether the set S is empty.
+   * @param {*} S set S
+   */
   MySet.isEmpty = function (S) {
     return S.size === 0;
+  };
+
+  /**
+   * returns the number of elements in S.
+   * @param {*} S set S
+   */
+  MySet.cardinality = function (S) {
+    return S.size;
   };
 
   /**

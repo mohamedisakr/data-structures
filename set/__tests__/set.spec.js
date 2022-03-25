@@ -351,4 +351,17 @@ describe("static", () => {
     const isEmpty = MySet.isEmpty(setS);
     expect(isEmpty).toBeTruthy();
   });
+
+  test("cardinality should return 0, if no items", () => {
+    const set = new MySet();
+    expect(MySet.cardinality(set)).toBe(0);
+  });
+
+  test("cardinality should return the correct length if set has items", () => {
+    const set = new MySet();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+    expect(MySet.cardinality(set)).toBe(3);
+  });
 });
