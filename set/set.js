@@ -69,15 +69,31 @@ MySet.prototype.add = function (value) {
   }
 };
 
-// set should be empty initially
-const set = new MySet();
-// console.log(set.set === {});
-console.log(set.size === 0);
+MySet.prototype.remove = function (value) {
+  if (this.set.hasOwnProperty(value)) {
+    delete this.set[value];
+    this.size--;
+  }
+};
 
-// set should save item if it is unique
-set.add(1);
-console.log(set.size === 1);
+MySet.prototype.has = function (value) {
+  if (this.set.hasOwnProperty(value)) {
+    return true;
+  }
+  return false;
+};
 
-// set should not save item if it is duplicated
-set.add(1);
-console.log(set.size === 1);
+MySet.prototype.length = function () {
+  return this.size;
+};
+
+MySet.prototype.print = function () {
+  console.log(this.set);
+  // for (let key in this.set) {
+  //   // if(this.set.hasOwnProperty(key))
+  //   console.log(key);
+  //   // console.log("Key:", key, "  Value:", this.set[key]);
+  // }
+};
+
+module.exports = { MySet };
