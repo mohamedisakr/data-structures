@@ -103,6 +103,16 @@ MySet.prototype.union = function (secondset) {
   return unionSet;
 };
 
+MySet.prototype.intersect = function (secondset) {
+  const intersection = new MySet();
+  for (let key in this.set) {
+    if (this.set.hasOwnProperty(key) && secondset.set.hasOwnProperty(key)) {
+      intersection.add(key);
+    }
+  }
+  return intersection;
+};
+
 MySet.prototype.print = function () {
   console.log(this.set);
   // for (let key in this.set) {

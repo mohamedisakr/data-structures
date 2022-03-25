@@ -80,4 +80,32 @@ describe("set", () => {
       5: "true",
     });
   });
+
+  test("intersect should return the intersection of 2 sets, if it exists", () => {
+    const set = new MySet();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+
+    const secondset = new MySet();
+    secondset.add(3);
+    secondset.add(5);
+
+    const intersection = set.intersect(secondset);
+    expect(intersection.length()).toBe(1);
+  });
+
+  test("intersect should return 0, if no intersect exists", () => {
+    const set = new MySet();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+
+    const secondset = new MySet();
+    secondset.add(4);
+    secondset.add(5);
+
+    const intersection = set.intersect(secondset);
+    expect(intersection.length()).toBe(0);
+  });
 });
