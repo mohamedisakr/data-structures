@@ -70,7 +70,7 @@ describe("set", () => {
     // console.log(`second set length: ${secondset.length()}`);
 
     const theUnionSet = set.union(secondset);
-    console.log(theUnionSet);
+    // console.log(theUnionSet);
     expect(theUnionSet.length()).toBe(5);
     expect(theUnionSet.set).toEqual({
       1: "true",
@@ -104,6 +104,35 @@ describe("set", () => {
     const secondset = new MySet();
     secondset.add(4);
     secondset.add(5);
+
+    const intersection = set.intersect(secondset);
+    expect(intersection.length()).toBe(0);
+  });
+
+  test("difference should return the difference of 2 sets, if it exists", () => {
+    const set = new MySet();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+
+    const secondset = new MySet();
+    secondset.add(3);
+    secondset.add(5);
+
+    const diff = set.difference(secondset);
+    expect(diff.length()).toBe(2);
+  });
+
+  test("difference should return 0, if no difference exists", () => {
+    const set = new MySet();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+
+    const secondset = new MySet();
+    secondset.add(4);
+    secondset.add(5);
+    secondset.add(6);
 
     const intersection = set.intersect(secondset);
     expect(intersection.length()).toBe(0);

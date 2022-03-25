@@ -113,6 +113,17 @@ MySet.prototype.intersect = function (secondset) {
   return intersection;
 };
 
+MySet.prototype.difference = function (secondset) {
+  const diff = new MySet();
+  for (let key in this.set) {
+    // if (this.set.hasOwnProperty(key) && !secondset.set.hasOwnProperty(key)) {
+    if (!secondset.set.hasOwnProperty(key)) {
+      diff.add(key);
+    }
+  }
+  return diff;
+};
+
 MySet.prototype.print = function () {
   console.log(this.set);
   // for (let key in this.set) {
