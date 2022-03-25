@@ -92,6 +92,29 @@ function MySet() {
     return S.size;
   };
 
+  // create_from(collection):
+  /**
+   * creates a new set structure containing all the elements of
+   * the given collection.
+   * @param {*} collection a collection of items
+   */
+  MySet.createFrom = function (collection) {
+    const generated = new MySet();
+
+    if (Array.isArray(collection)) {
+      // if collection is array
+      collection.forEach((item) => {
+        generated.add(item);
+      });
+    } else {
+      // if collection is object
+      for (let key in collection) {
+        generated.add(key);
+      }
+    }
+    return generated;
+  };
+
   /**
    * returns the union of sets S and T.
    * @param {*} S set S

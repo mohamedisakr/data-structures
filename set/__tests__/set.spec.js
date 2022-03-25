@@ -364,4 +364,16 @@ describe("static", () => {
     set.add(3);
     expect(MySet.cardinality(set)).toBe(3);
   });
+
+  test("createFrom should read an array", () => {
+    const arr = [1, 2, 3];
+    const gen = MySet.createFrom(arr);
+    expect(MySet.cardinality(gen)).toBe(3);
+  });
+
+  test("createFrom should read an object", () => {
+    const obj = { 1: "true", 2: "true", 3: "true" };
+    const gen = MySet.createFrom(obj);
+    expect(MySet.cardinality(gen)).toBe(3);
+  });
 });
