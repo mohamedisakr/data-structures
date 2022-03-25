@@ -1,5 +1,7 @@
 ## Resources
 
+- Set (MDN)
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
 - Algebra of sets
   https://en.wikipedia.org/wiki/Algebra_of_sets
 - Set (abstract data type)

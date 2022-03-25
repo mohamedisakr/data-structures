@@ -61,7 +61,95 @@ function MySet() {
   this.set = {};
   this.size = 0;
 
-  MySet.subset = function () {};
+  /**
+   * checks whether the value x is in the set S.
+   * @param {*} x the element to search
+   * @param {*} S set S
+   */
+  MySet.isElementOf = function (x, S) {
+    const { set } = S;
+    for (let key in set) {
+      if (key === x) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  // is_empty(S): checks whether the set S is empty.
+  MySet.isEmpty = function (S) {
+    return S.size === 0;
+  };
+
+  /**
+   * returns the union of sets S and T.
+   * @param {*} S set S
+   * @param {*} T Set T
+   */
+  MySet.union = function (S, T) {
+    const unionSet = new MySet();
+
+    for (let key in S.set) {
+      if (S.set.hasOwnProperty(key)) {
+        unionSet.add(key);
+      }
+    }
+
+    for (let key in T.set) {
+      if (!unionSet.set.hasOwnProperty(key)) {
+        unionSet.add(key);
+      }
+    }
+
+    return unionSet;
+  };
+
+  /**
+   * returns the intersection of sets S and T.
+   * @param {*} S set S
+   * @param {*} T Set T
+   */
+  MySet.intersect = function (S, T) {
+    const inter = new MySet();
+
+    for (let key in S.set) {
+      if (S.set.hasOwnProperty(key) && T.set.hasOwnProperty(key)) {
+        inter.add(key);
+      }
+    }
+    return inter;
+  };
+
+  /**
+   * returns the difference of sets S and T.
+   * @param {*} S set S
+   * @param {*} T Set T
+   */
+  MySet.difference = function (S, T) {
+    const diff = new MySet();
+    const { set } = S;
+    for (let key in set) {
+      if (set.hasOwnProperty(key) && !T.set.hasOwnProperty(key)) {
+        diff.add(key);
+      }
+    }
+    return diff;
+  };
+
+  /**
+   * a predicate that tests whether the set S is a subset of set T.
+   * @param {*} S set S
+   * @param {*} T Set T
+   */
+  MySet.subset = function (S, T) {
+    const { set } = S;
+    for (let key in set) {
+      if (set.hasOwnProperty(key) && !T.set.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+    return true;
+  };
 }
 
 MySet.prototype.add = function (value) {

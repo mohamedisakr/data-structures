@@ -1,6 +1,6 @@
 const { MySet } = require("../set");
 
-describe("set", () => {
+describe("instance", () => {
   test("set should be empty initially", () => {
     const set = new MySet();
     expect(set.set).toEqual({});
@@ -172,5 +172,183 @@ describe("set", () => {
 
     const isSubset = set.subset(setA);
     expect(isSubset).toBeFalsy();
+  });
+});
+
+describe("static", () => {
+  test("union should return the combination of 2 sets", () => {
+    const setS = new MySet();
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+
+    const setT = new MySet();
+    setT.add(4);
+    setT.add(5);
+
+    const theUnionSet = MySet.union(setS, setT);
+    console.log(theUnionSet);
+    expect(theUnionSet.length()).toBe(5);
+
+    expect(theUnionSet.set).toEqual({
+      1: "true",
+      2: "true",
+      3: "true",
+      4: "true",
+      5: "true",
+    });
+  });
+
+  test("intersect should return the intersection of 2 sets, if it exists", () => {
+    const setS = new MySet();
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+
+    const setT = new MySet();
+    setT.add(3);
+    setT.add(5);
+
+    const intersection = MySet.intersect(setS, setT);
+    expect(intersection.length()).toBe(1);
+  });
+
+  test("intersect should return 0, if no intersect exists", () => {
+    const setS = new MySet();
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+
+    const setT = new MySet();
+    setT.add(4);
+    setT.add(5);
+
+    const intersection = MySet.intersect(setS, setT);
+    expect(intersection.length()).toBe(0);
+  });
+
+  test("difference should return the difference of 2 sets, if it exists", () => {
+    const setS = new MySet();
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+
+    const setT = new MySet();
+    setT.add(3);
+    setT.add(5);
+
+    const diff = MySet.difference(setS, setT);
+    expect(diff.length()).toBe(2);
+  });
+
+  test("difference should return all of set S, if no not exists in set T", () => {
+    const setS = new MySet();
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+
+    const setT = new MySet();
+    setT.add(4);
+    setT.add(5);
+    setT.add(6);
+
+    const diff = MySet.difference(setS, setT);
+    expect(diff.length()).toBe(3);
+  });
+
+  test("difference should return 0, if no difference exists", () => {
+    const setS = new MySet();
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+
+    const setT = new MySet();
+    setT.add(1);
+    setT.add(2);
+    setT.add(3);
+
+    const diff = MySet.difference(setS, setT);
+    expect(diff.length()).toBe(0);
+  });
+
+  test("subset should be true, if set A is subset of the current set", () => {
+    const setS = new MySet();
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+
+    const setT = new MySet();
+    setT.add(0);
+    setT.add(1);
+    setT.add(2);
+    setT.add(3);
+    setT.add(4);
+    setT.add(5);
+
+    const isSubset = MySet.subset(setT, setT);
+    expect(isSubset).toBeTruthy();
+  });
+
+  test("subset should be false, if set A has at least 1 element that is not in the current set", () => {
+    const setS = new MySet();
+    setS.add(0);
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+    setS.add(4);
+    setS.add(5);
+
+    const setT = new MySet();
+    setT.add(1);
+    setT.add(2);
+    setT.add(6);
+
+    const isSubset = MySet.subset(setS, setT);
+    expect(isSubset).toBeFalsy();
+  });
+
+  test("element of should be true, if the element is in the set", () => {
+    const setS = new MySet();
+    setS.add(0);
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+    setS.add(4);
+    setS.add(5);
+
+    const isElement = MySet.isElementOf("0", setS);
+    expect(isElement).toBeTruthy();
+  });
+
+  test("element of should be false, if the element is not in the set", () => {
+    const setS = new MySet();
+    setS.add(0);
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+    setS.add(4);
+    setS.add(5);
+
+    const isElement = MySet.isElementOf("6", setS);
+    expect(isElement).toBeFalsy();
+  });
+
+  test("is empty should return true, if the set size > 0", () => {
+    const setS = new MySet();
+    setS.add(0);
+    setS.add(1);
+    setS.add(2);
+    setS.add(3);
+    setS.add(4);
+    setS.add(5);
+
+    const isEmpty = MySet.isEmpty(setS);
+    expect(isEmpty).toBeFalsy();
+  });
+
+  test("is empty should return true, if the set size > 0", () => {
+    const setS = new MySet();
+    const isEmpty = MySet.isEmpty(setS);
+    expect(isEmpty).toBeTruthy();
   });
 });
