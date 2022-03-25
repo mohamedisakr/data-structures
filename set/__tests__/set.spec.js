@@ -64,12 +64,12 @@ describe("set", () => {
     set.add(3);
     // console.log(`this set length: ${set.length()}`);
 
-    const secondset = new MySet();
-    secondset.add(4);
-    secondset.add(5);
-    // console.log(`second set length: ${secondset.length()}`);
+    const setA = new MySet();
+    setA.add(4);
+    setA.add(5);
+    // console.log(`second set length: ${setA.length()}`);
 
-    const theUnionSet = set.union(secondset);
+    const theUnionSet = set.union(setA);
     // console.log(theUnionSet);
     expect(theUnionSet.length()).toBe(5);
     expect(theUnionSet.set).toEqual({
@@ -87,11 +87,11 @@ describe("set", () => {
     set.add(2);
     set.add(3);
 
-    const secondset = new MySet();
-    secondset.add(3);
-    secondset.add(5);
+    const setA = new MySet();
+    setA.add(3);
+    setA.add(5);
 
-    const intersection = set.intersect(secondset);
+    const intersection = set.intersect(setA);
     expect(intersection.length()).toBe(1);
   });
 
@@ -101,11 +101,11 @@ describe("set", () => {
     set.add(2);
     set.add(3);
 
-    const secondset = new MySet();
-    secondset.add(4);
-    secondset.add(5);
+    const setA = new MySet();
+    setA.add(4);
+    setA.add(5);
 
-    const intersection = set.intersect(secondset);
+    const intersection = set.intersect(setA);
     expect(intersection.length()).toBe(0);
   });
 
@@ -115,11 +115,11 @@ describe("set", () => {
     set.add(2);
     set.add(3);
 
-    const secondset = new MySet();
-    secondset.add(3);
-    secondset.add(5);
+    const setA = new MySet();
+    setA.add(3);
+    setA.add(5);
 
-    const diff = set.difference(secondset);
+    const diff = set.difference(setA);
     expect(diff.length()).toBe(2);
   });
 
@@ -129,12 +129,48 @@ describe("set", () => {
     set.add(2);
     set.add(3);
 
-    const secondset = new MySet();
-    secondset.add(4);
-    secondset.add(5);
-    secondset.add(6);
+    const setA = new MySet();
+    setA.add(4);
+    setA.add(5);
+    setA.add(6);
 
-    const intersection = set.intersect(secondset);
+    const intersection = set.intersect(setA);
     expect(intersection.length()).toBe(0);
+  });
+
+  test("subset should be true, if set A is subset of the current set", () => {
+    const set = new MySet();
+    set.add(0);
+    set.add(1);
+    set.add(2);
+    set.add(3);
+    set.add(4);
+    set.add(5);
+
+    const setA = new MySet();
+    setA.add(1);
+    setA.add(2);
+    setA.add(3);
+
+    const isSubset = set.subset(setA);
+    expect(isSubset).toBeTruthy();
+  });
+
+  test("subset should be false, if set A has at least 1 element that is not in the current set", () => {
+    const set = new MySet();
+    set.add(0);
+    set.add(1);
+    set.add(2);
+    set.add(3);
+    set.add(4);
+    set.add(5);
+
+    const setA = new MySet();
+    setA.add(1);
+    setA.add(2);
+    setA.add(6);
+
+    const isSubset = set.subset(setA);
+    expect(isSubset).toBeFalsy();
   });
 });

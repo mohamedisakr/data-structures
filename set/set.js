@@ -60,6 +60,8 @@ Set.prototype.forEach(callbackFn[, thisArg])
 function MySet() {
   this.set = {};
   this.size = 0;
+
+  MySet.subset = function () {};
 }
 
 MySet.prototype.add = function (value) {
@@ -87,7 +89,7 @@ MySet.prototype.length = function () {
   return this.size;
 };
 
-MySet.prototype.union = function (secondset) {
+MySet.prototype.union = function (setA) {
   const unionSet = new MySet();
   for (let key in this.set) {
     if (this.set.hasOwnProperty(key)) {
@@ -95,7 +97,7 @@ MySet.prototype.union = function (secondset) {
     }
   }
 
-  for (let key in secondset.set) {
+  for (let key in setA.set) {
     if (!unionSet.set.hasOwnProperty(key)) {
       unionSet.add(key);
     }
@@ -103,25 +105,34 @@ MySet.prototype.union = function (secondset) {
   return unionSet;
 };
 
-MySet.prototype.intersect = function (secondset) {
+MySet.prototype.intersect = function (setA) {
   const intersection = new MySet();
   for (let key in this.set) {
-    if (this.set.hasOwnProperty(key) && secondset.set.hasOwnProperty(key)) {
+    if (this.set.hasOwnProperty(key) && setA.set.hasOwnProperty(key)) {
       intersection.add(key);
     }
   }
   return intersection;
 };
 
-MySet.prototype.difference = function (secondset) {
+MySet.prototype.difference = function (setA) {
   const diff = new MySet();
   for (let key in this.set) {
-    // if (this.set.hasOwnProperty(key) && !secondset.set.hasOwnProperty(key)) {
-    if (!secondset.set.hasOwnProperty(key)) {
+    // if (this.set.hasOwnProperty(key) && !setA.set.hasOwnProperty(key)) {
+    if (!setA.set.hasOwnProperty(key)) {
       diff.add(key);
     }
   }
   return diff;
+};
+
+MySet.prototype.subset = function (setA) {
+  for (let key in setA.set) {
+    if (!this.set.hasOwnProperty(key)) {
+      return false;
+    }
+  }
+  return true;
 };
 
 MySet.prototype.print = function () {
