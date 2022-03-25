@@ -213,6 +213,22 @@ describe("instance", () => {
     const max = set.max();
     expect(max).toBe(5);
   });
+
+  test("clear should reset set, and size", () => {
+    const theSet = new MySet();
+    theSet.add(0);
+    theSet.add(1);
+    theSet.add(2);
+    theSet.add(3);
+    theSet.add(4);
+    theSet.add(5);
+
+    theSet.clear();
+    // const { set, length } = theSet;
+    const size = theSet.length();
+    expect(size).toBe(0);
+    expect(theSet.set).toEqual({});
+  });
 });
 
 describe("static", () => {
@@ -373,7 +389,7 @@ describe("static", () => {
     expect(isElement).toBeFalsy();
   });
 
-  test("is empty should return true, if the set size > 0", () => {
+  test("is empty should return false, if the set size > 0", () => {
     const setS = new MySet();
     setS.add(0);
     setS.add(1);
@@ -386,7 +402,7 @@ describe("static", () => {
     expect(isEmpty).toBeFalsy();
   });
 
-  test("is empty should return true, if the set size > 0", () => {
+  test("is empty should return true, if the set size = 0", () => {
     const setS = new MySet();
     const isEmpty = MySet.isEmpty(setS);
     expect(isEmpty).toBeTruthy();

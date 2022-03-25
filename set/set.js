@@ -241,6 +241,11 @@ MySet.prototype.length = function () {
   return this.size;
 };
 
+MySet.prototype.clear = function () {
+  this.set = {};
+  this.size = 0;
+};
+
 MySet.prototype.min = function () {
   return this.minimum;
 };
