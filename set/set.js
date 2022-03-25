@@ -60,6 +60,8 @@ Set.prototype.forEach(callbackFn[, thisArg])
 function MySet() {
   this.set = {};
   this.size = 0;
+  this.minimum = Number.MAX_SAFE_INTEGER;
+  this.maximum = Number.MAX_SAFE_INTEGER * -1;
 
   /**
    * checks whether the value x is in the set S.
@@ -105,11 +107,23 @@ function MySet() {
       // if collection is array
       collection.forEach((item) => {
         generated.add(item);
+        if (this.maximum < item) {
+          this.maximum = item;
+        }
+        if (this.minimum > item) {
+          this.minimum = item;
+        }
       });
     } else {
       // if collection is object
       for (let key in collection) {
         generated.add(key);
+        if (this.maximum < key) {
+          this.maximum = key;
+        }
+        if (this.minimum > key) {
+          this.minimum = key;
+        }
       }
     }
     return generated;
@@ -200,6 +214,12 @@ MySet.prototype.add = function (value) {
   if (!this.set.hasOwnProperty(value)) {
     this.set[value] = "true";
     this.size++;
+    if (this.maximum < value) {
+      this.maximum = value;
+    }
+    if (this.minimum > value) {
+      this.minimum = value;
+    }
   }
 };
 
@@ -221,6 +241,14 @@ MySet.prototype.length = function () {
   return this.size;
 };
 
+MySet.prototype.min = function () {
+  return this.minimum;
+};
+
+MySet.prototype.max = function () {
+  return this.maximum;
+};
+
 MySet.prototype.createFrom = function (collection) {
   const generated = new MySet();
 
@@ -229,6 +257,12 @@ MySet.prototype.createFrom = function (collection) {
       if (!this.set.hasOwnProperty(item)) {
         this.set[item] = "true";
         this.size++;
+        if (this.maximum < item) {
+          this.maximum = item;
+        }
+        if (this.minimum > item) {
+          this.minimum = item;
+        }
       }
     });
   } else {
@@ -236,6 +270,12 @@ MySet.prototype.createFrom = function (collection) {
       if (!this.set.hasOwnProperty(key)) {
         this.set[key] = "true";
         this.size++;
+        if (this.maximum < key) {
+          this.maximum = key;
+        }
+        if (this.minimum > key) {
+          this.minimum = key;
+        }
       }
     }
   }

@@ -187,6 +187,32 @@ describe("instance", () => {
     const isSubset = set.subset(setA);
     expect(isSubset).toBeFalsy();
   });
+
+  test("min should return min item, if set has one", () => {
+    const set = new MySet();
+    set.add(0);
+    set.add(1);
+    set.add(2);
+    set.add(3);
+    set.add(4);
+    set.add(5);
+
+    const min = set.min();
+    expect(min).toBe(0);
+  });
+
+  test("max should return max item, if set has one", () => {
+    const set = new MySet();
+    set.add(0);
+    set.add(1);
+    set.add(2);
+    set.add(3);
+    set.add(4);
+    set.add(5);
+
+    const max = set.max();
+    expect(max).toBe(5);
+  });
 });
 
 describe("static", () => {
