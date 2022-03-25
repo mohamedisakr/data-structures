@@ -56,4 +56,28 @@ describe("set", () => {
     set.add(3);
     expect(set.length()).toBe(3);
   });
+
+  test("union should return the combination of 2 sets", () => {
+    const set = new MySet();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+    // console.log(`this set length: ${set.length()}`);
+
+    const secondset = new MySet();
+    secondset.add(4);
+    secondset.add(5);
+    // console.log(`second set length: ${secondset.length()}`);
+
+    const theUnionSet = set.union(secondset);
+    console.log(theUnionSet);
+    expect(theUnionSet.length()).toBe(5);
+    expect(theUnionSet.set).toEqual({
+      1: "true",
+      2: "true",
+      3: "true",
+      4: "true",
+      5: "true",
+    });
+  });
 });

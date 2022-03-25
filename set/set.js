@@ -87,6 +87,22 @@ MySet.prototype.length = function () {
   return this.size;
 };
 
+MySet.prototype.union = function (secondset) {
+  const unionSet = new MySet();
+  for (let key in this.set) {
+    if (this.set.hasOwnProperty(key)) {
+      unionSet.add(key);
+    }
+  }
+
+  for (let key in secondset.set) {
+    if (!unionSet.set.hasOwnProperty(key)) {
+      unionSet.add(key);
+    }
+  }
+  return unionSet;
+};
+
 MySet.prototype.print = function () {
   console.log(this.set);
   // for (let key in this.set) {
