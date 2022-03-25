@@ -17,7 +17,21 @@ describe("instance", () => {
     const set = new MySet();
     set.add(1);
     set.add(1);
-    expect(set.size).toBe(1);
+    expect(set.length()).toBe(1);
+  });
+
+  test("createFrom should read an array", () => {
+    const arr = [1, 2, 3];
+    const theSet = new MySet();
+    theSet.createFrom(arr);
+    expect(theSet.length()).toBe(3);
+  });
+
+  test("createFrom should read an object", () => {
+    const obj = { 1: "true", 2: "true", 3: "true" };
+    const theSet = new MySet();
+    theSet.createFrom(obj);
+    expect(theSet.length()).toBe(3);
   });
 
   test("set should remove item if it is already exists/saved", () => {
@@ -187,7 +201,7 @@ describe("static", () => {
     setT.add(5);
 
     const theUnionSet = MySet.union(setS, setT);
-    console.log(theUnionSet);
+    // console.log(theUnionSet);
     expect(theUnionSet.length()).toBe(5);
 
     expect(theUnionSet.set).toEqual({
@@ -368,12 +382,25 @@ describe("static", () => {
   test("createFrom should read an array", () => {
     const arr = [1, 2, 3];
     const gen = MySet.createFrom(arr);
-    expect(MySet.cardinality(gen)).toBe(3);
+    // expect(MySet.cardinality(gen)).toBe(3);
+    expect(gen.size).toBe(3);
   });
 
   test("createFrom should read an object", () => {
     const obj = { 1: "true", 2: "true", 3: "true" };
     const gen = MySet.createFrom(obj);
-    expect(MySet.cardinality(gen)).toBe(3);
+    // expect(MySet.cardinality(gen)).toBe(3);
+    expect(gen.size).toBe(3);
+  });
+
+  test("enumerate should list all set elements", () => {
+    const theSet = new MySet();
+    theSet.add(1);
+    theSet.add(2);
+    theSet.add(3);
+
+    const enumerated = MySet.enumerate(theSet);
+    // console.log(enumerated);
+    expect(enumerated).toEqual(["1", "2", "3"]);
   });
 });

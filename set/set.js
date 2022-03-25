@@ -115,6 +115,16 @@ function MySet() {
     return generated;
   };
 
+  // enumerate(S):
+  /**
+   * returns a list containing the elements of S in some arbitrary order.
+   * @param {*} S set S
+   */
+  MySet.enumerate = function (S) {
+    const { set } = S;
+    return Object.keys(set);
+  };
+
   /**
    * returns the union of sets S and T.
    * @param {*} S set S
@@ -209,6 +219,27 @@ MySet.prototype.has = function (value) {
 
 MySet.prototype.length = function () {
   return this.size;
+};
+
+MySet.prototype.createFrom = function (collection) {
+  const generated = new MySet();
+
+  if (Array.isArray(collection)) {
+    collection.forEach((item) => {
+      if (!this.set.hasOwnProperty(item)) {
+        this.set[item] = "true";
+        this.size++;
+      }
+    });
+  } else {
+    for (let key in collection) {
+      if (!this.set.hasOwnProperty(key)) {
+        this.set[key] = "true";
+        this.size++;
+      }
+    }
+  }
+  return generated;
 };
 
 MySet.prototype.union = function (setA) {
