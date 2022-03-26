@@ -260,6 +260,34 @@ MySet.prototype.map = function (predicate) {
   return Object.keys(this.set).map((item) => predicate(item));
 };
 
+MySet.prototype.build = function () {
+  const generated = new MySet();
+  // const args = Array.prototype.slice.call(arguments); // [].slice.call(arguments); // Array.from(arguments); //[...arguments];
+  let args = Array.from(arguments);
+  // args = [...args];
+  // console.log(`args array`);
+  // console.log(args);
+  // console.log(`arguments : ${JSON.stringify(arguments)}`);
+  // console.log(`args type : ${typeof args}`);
+
+  args.forEach((item) => {
+    // console.log(`item : ${item}`);
+    if (!generated.set.hasOwnProperty(item)) {
+      generated.set[item] = "true";
+      generated.size++;
+
+      if (generated.maximum < item) {
+        generated.maximum = item;
+      }
+      if (generated.minimum > item) {
+        generated.minimum = item;
+      }
+    }
+  });
+  console.log(`build : ${JSON.stringify(generated)}`);
+  return generated;
+};
+
 MySet.prototype.createFrom = function (collection) {
   const generated = new MySet();
 

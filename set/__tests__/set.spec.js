@@ -224,7 +224,7 @@ describe("instance", () => {
     theSet.add(5);
 
     theSet.clear();
-    // const { set, length } = theSet;
+
     const size = theSet.length();
     expect(size).toBe(0);
     expect(theSet.set).toEqual({});
@@ -243,8 +243,13 @@ describe("instance", () => {
       return item * 2;
     }
     const result = theSet.map(predicate);
-    // console.log(result);
     expect(result).toEqual([0, 2, 4, 6, 8, 10]);
+  });
+
+  test("build should create set from arguments", () => {
+    const theSet = new MySet();
+    const result = theSet.build(1, 2, 3);
+    expect(result.length()).toBe(3);
   });
 });
 
