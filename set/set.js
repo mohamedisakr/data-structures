@@ -264,6 +264,25 @@ MySet.prototype.map = function (predicate) {
   return Object.keys(this.set).map((item) => predicate(item));
 };
 
+MySet.prototype.powerset = function () {
+  const set = Object.keys(this.set);
+  const n = this.size;
+  const p = Math.pow(2, n);
+  let power = [];
+
+  for (let counter = 0; counter < p; counter++) {
+    let inner = [];
+    for (let i = 0; i < n; i++) {
+      if ((counter & (1 << i)) !== 0) {
+        inner.push(set[i]);
+      }
+    }
+    power.push(inner);
+  }
+
+  return power;
+};
+
 MySet.prototype.build = function () {
   const generated = new MySet();
   let args = Array.from(arguments);

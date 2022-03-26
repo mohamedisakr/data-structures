@@ -257,6 +257,30 @@ describe("instance", () => {
     const result = theSet.build();
     expect(result.isEmpty()).toBeTruthy();
   });
+
+  test("power set should generate all the subsets of the set, if it has elements", () => {
+    const theSet = new MySet();
+    theSet.add(1);
+    theSet.add(2);
+    theSet.add(3);
+    const result = theSet.powerset();
+    expect(result).toEqual([
+      [],
+      ["1"],
+      ["2"],
+      ["1", "2"],
+      ["3"],
+      ["1", "3"],
+      ["2", "3"],
+      ["1", "2", "3"],
+    ]);
+  });
+
+  test("power set should return only the empty set, if it has no elements", () => {
+    const theSet = new MySet();
+    const result = theSet.powerset();
+    expect(result).toEqual([[]]);
+  });
 });
 
 describe("static", () => {
