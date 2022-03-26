@@ -246,10 +246,16 @@ describe("instance", () => {
     expect(result).toEqual([0, 2, 4, 6, 8, 10]);
   });
 
-  test("build should create set from arguments", () => {
+  test("build should create set from arguments, if any passed", () => {
     const theSet = new MySet();
     const result = theSet.build(1, 2, 3);
     expect(result.length()).toBe(3);
+  });
+
+  test("build should create empty set, if no arguments passed", () => {
+    const theSet = new MySet();
+    const result = theSet.build();
+    expect(result.isEmpty()).toBeTruthy();
   });
 });
 
