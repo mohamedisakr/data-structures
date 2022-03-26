@@ -229,6 +229,23 @@ describe("instance", () => {
     expect(size).toBe(0);
     expect(theSet.set).toEqual({});
   });
+
+  test("map should apply predicate function", () => {
+    const theSet = new MySet();
+    theSet.add(0);
+    theSet.add(1);
+    theSet.add(2);
+    theSet.add(3);
+    theSet.add(4);
+    theSet.add(5);
+
+    function predicate(item) {
+      return item * 2;
+    }
+    const result = theSet.map(predicate);
+    // console.log(result);
+    expect(result).toEqual([0, 2, 4, 6, 8, 10]);
+  });
 });
 
 describe("static", () => {

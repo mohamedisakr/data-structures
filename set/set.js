@@ -254,6 +254,12 @@ MySet.prototype.max = function () {
   return this.maximum;
 };
 
+// map(F,S): returns the set of distinct values resulting from applying
+// function F to each element of S.
+MySet.prototype.map = function (predicate) {
+  return Object.keys(this.set).map((item) => predicate(item));
+};
+
 MySet.prototype.createFrom = function (collection) {
   const generated = new MySet();
 
