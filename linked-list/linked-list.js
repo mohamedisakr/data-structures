@@ -23,4 +23,45 @@ LinkedList.prototype.push = function (val) {
   this.size++;
 };
 
+// 1 --> 2 --> 3 --> 4
+// 0     1     1     2
+LinkedList.prototype.itemAt = function (index) {
+  if (index < 0 || index >= this.size) {
+    return null;
+  }
+
+  let current = this.head;
+  for (let counter = 0; counter < index; counter++) {
+    current = current.next;
+  }
+  return current.val;
+};
+
+LinkedList.prototype.remove = function (index) {
+  if (index < 0 || index >= this.size) {
+    return null;
+  }
+
+  let current = this.head;
+
+  // 1 --> 2 --> 3 --> 4
+  // 0     1     1     2
+  if (index === 0) {
+    this.head = current.next;
+  } else {
+    let prev = null;
+    let counter = 0;
+
+    while (counter < index) {
+      prev = current;
+      current = current.next;
+      counter++;
+    }
+    prev.next = current.next;
+  }
+
+  this.size--;
+  return current.val;
+};
+
 module.exports = { LinkedList, Node };
