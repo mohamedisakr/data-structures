@@ -64,4 +64,19 @@ LinkedList.prototype.remove = function (index) {
   return current.val;
 };
 
+LinkedList.prototype.search = function (val) {
+  let counter = 0;
+  let current = this.head;
+
+  while (current) {
+    if (current.val === val) {
+      return counter;
+    }
+    counter++;
+    current = current.next;
+  }
+
+  return null;
+};
+
 module.exports = { LinkedList, Node };

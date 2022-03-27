@@ -126,6 +126,50 @@ describe("linked list", () => {
     const removedIndex = linkedList.remove(3);
     expect(removedIndex).toBe(4);
   });
+
+  it("search should return null if value does not exist", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(7);
+    expect(searchIndex).toBeNull();
+  });
+
+  it("search (head) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(1);
+    expect(searchIndex).toBe(0);
+  });
+
+  it("search (middle) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(3);
+    expect(searchIndex).toBe(2);
+  });
+
+  it("search (tail) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(4);
+    expect(searchIndex).toBe(3);
+  });
 });
 
 describe("node", () => {
