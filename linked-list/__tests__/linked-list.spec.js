@@ -28,16 +28,87 @@ describe("linked list", () => {
     expect(head.val).toBe(2);
   });
 
-  it("pushAtHead 3 nodes, the 3rd should be the list head & first the tail", () => {
+  it("pushAtHead 4 nodes, the 4th should be the list head & first the tail", () => {
     const linkedList = new LinkedList();
     linkedList.pushAtHead(1);
     linkedList.pushAtHead(2);
     linkedList.pushAtHead(3);
     linkedList.pushAtHead(4);
+
     const { head, tail } = linkedList;
     expect(linkedList.size).toBe(4);
     expect(head.val).toBe(4);
     expect(tail.val).toBe(1);
+  });
+
+  it("pushAtTail only one node, should be the list head & tail as well", () => {
+    const linkedList = new LinkedList();
+    linkedList.pushAtTail(1);
+    const { head, tail } = linkedList;
+    expect(linkedList.size).toBe(1);
+    expect(head.val).toBe(1);
+    expect(tail.val).toBe(1);
+  });
+
+  it("pushAtTail 2 nodes, the 2nd should be the list head", () => {
+    const linkedList = new LinkedList();
+    linkedList.pushAtTail(1);
+    linkedList.pushAtTail(2);
+    const { head, tail } = linkedList;
+    expect(linkedList.size).toBe(2);
+    expect(head.val).toBe(1);
+    expect(tail.val).toBe(2);
+  });
+
+  it("pushAtTail 4 nodes, the 4th should be the list head & first the tail", () => {
+    const linkedList = new LinkedList();
+    linkedList.pushAtTail(1);
+    linkedList.pushAtTail(2);
+    linkedList.pushAtTail(3);
+    linkedList.pushAtTail(4);
+
+    const { head, tail } = linkedList;
+    expect(linkedList.size).toBe(4);
+    expect(head.val).toBe(1);
+    expect(tail.val).toBe(4);
+  });
+
+  it("pushAtNth should return null if index < 0", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    linkedList.pushAtNth(-1);
+    expect(linkedList.size).toBe(4);
+  });
+
+  it("pushAtNth should return null if index > size", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    linkedList.pushAtNth(7);
+    expect(linkedList.size).toBe(4);
+  });
+
+  it("pushAtNth 4 nodes, the 4th should be the list head & first the tail", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    linkedList.pushAtNth(2, 5);
+
+    const { head, tail } = linkedList;
+    expect(linkedList.size).toBe(5);
+    expect(head.val).toBe(1);
+    expect(head.next.next.next.val).toBe(5);
+    expect(tail.val).toBe(4);
   });
 
   it("push first item, should be the list head", () => {

@@ -30,6 +30,27 @@ LinkedList.prototype.pushAtHead = function (val) {
   this.size++;
 };
 
+LinkedList.prototype.pushAtTail = function (val) {
+  const newNode = new Node(val);
+  // if linked list is empty
+  if (this.head === null) {
+    this.head = newNode;
+    this.tail = newNode;
+  } else {
+    // 3 -> 2 -> 1
+    const oldTail = this.tail;
+    oldTail.next = newNode;
+    this.tail = newNode;
+
+    // let current = oldHead;
+    // while (current.next) {
+    //   current = current.next;
+    // }
+    // this.tail = current;
+  }
+  this.size++;
+};
+
 LinkedList.prototype.push = function (val) {
   const newNode = new Node(val);
   // if linked list is empty
@@ -41,6 +62,26 @@ LinkedList.prototype.push = function (val) {
     oldTail.next = newNode;
     this.tail = newNode;
   }
+  this.size++;
+};
+
+LinkedList.prototype.pushAtNth = function (index, val) {
+  if (index < 0 || index >= this.size) {
+    return null;
+  }
+
+  const newNode = new Node(val);
+
+  let current = this.head;
+  for (let counter = 0; counter < index; counter++) {
+    current = current.next;
+  }
+
+  // Insert 5 after 3rd node
+  // 1 2 3 <<5>> 4
+  const currentNext = current.next;
+  current.next = newNode;
+  newNode.next = currentNext;
   this.size++;
 };
 
