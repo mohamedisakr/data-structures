@@ -16,9 +16,16 @@ LinkedList.prototype.pushAtHead = function (val) {
     this.head = newNode;
     this.tail = newNode;
   } else {
-    const oldTail = this.tail;
-    oldTail.next = newNode;
-    this.tail = newNode;
+    // 3 -> 2 -> 1
+    const oldHead = this.head;
+    this.head = newNode;
+    newNode.next = oldHead;
+
+    let current = oldHead;
+    while (current.next) {
+      current = current.next;
+    }
+    this.tail = current;
   }
   this.size++;
 };

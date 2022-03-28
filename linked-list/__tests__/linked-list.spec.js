@@ -11,6 +11,35 @@ describe("linked list", () => {
     expect(linkedList.isEmpty()).toBeTruthy();
   });
 
+  it("pushAtHead only one node, should be the list head", () => {
+    const linkedList = new LinkedList();
+    linkedList.pushAtHead(1);
+    const { head } = linkedList;
+    expect(linkedList.size).toBe(1);
+    expect(head.val).toBe(1);
+  });
+
+  it("pushAtHead 2 nodes, the 2nd should be the list head", () => {
+    const linkedList = new LinkedList();
+    linkedList.pushAtHead(1);
+    linkedList.pushAtHead(2);
+    const { head } = linkedList;
+    expect(linkedList.size).toBe(2);
+    expect(head.val).toBe(2);
+  });
+
+  it("pushAtHead 3 nodes, the 3rd should be the list head & first the tail", () => {
+    const linkedList = new LinkedList();
+    linkedList.pushAtHead(1);
+    linkedList.pushAtHead(2);
+    linkedList.pushAtHead(3);
+    linkedList.pushAtHead(4);
+    const { head, tail } = linkedList;
+    expect(linkedList.size).toBe(4);
+    expect(head.val).toBe(4);
+    expect(tail.val).toBe(1);
+  });
+
   it("push first item, should be the list head", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
