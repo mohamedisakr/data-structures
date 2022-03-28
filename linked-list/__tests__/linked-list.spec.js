@@ -6,6 +6,19 @@ describe("linked list", () => {
     expect(linkedList).not.toBeNull();
   });
 
+  it("create empty linked list should have no items", () => {
+    const linkedList = new LinkedList();
+    expect(linkedList.isEmpty()).toBeTruthy();
+  });
+
+  it("push first item, should be the list head", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    const { head } = linkedList;
+    expect(linkedList.size).toBe(1);
+    expect(head).toEqual({ val: 1, next: null });
+  });
+
   it("push first item, should be the list head", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);

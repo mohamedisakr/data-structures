@@ -9,6 +9,20 @@ function LinkedList() {
   this.size = 0;
 }
 
+LinkedList.prototype.pushAtHead = function (val) {
+  const newNode = new Node(val);
+  // if linked list is empty
+  if (this.head === null) {
+    this.head = newNode;
+    this.tail = newNode;
+  } else {
+    const oldTail = this.tail;
+    oldTail.next = newNode;
+    this.tail = newNode;
+  }
+  this.size++;
+};
+
 LinkedList.prototype.push = function (val) {
   const newNode = new Node(val);
   // if linked list is empty
@@ -44,8 +58,6 @@ LinkedList.prototype.remove = function (index) {
 
   let current = this.head;
 
-  // 1 --> 2 --> 3 --> 4
-  // 0     1     1     2
   if (index === 0) {
     this.head = current.next;
   } else {
@@ -62,6 +74,10 @@ LinkedList.prototype.remove = function (index) {
 
   this.size--;
   return current.val;
+};
+
+LinkedList.prototype.isEmpty = function () {
+  return this.head === null && this.size === 0;
 };
 
 LinkedList.prototype.search = function (val) {
