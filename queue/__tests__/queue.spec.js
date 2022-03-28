@@ -28,7 +28,9 @@ describe("queue", () => {
     queue.enqueue(1);
     queue.enqueue(2);
     queue.enqueue(3);
+
     const result = queue.peek();
+    console.log(result);
     expect(result).toBe(1);
   });
 
@@ -45,6 +47,7 @@ describe("queue", () => {
     queue.enqueue(3);
     const result = queue.dequeue();
 
+    console.log(result);
     expect(result).toBe(1);
     expect(queue.size()).toBe(2);
   });

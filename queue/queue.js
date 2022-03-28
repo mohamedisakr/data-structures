@@ -1,24 +1,18 @@
 function Queue() {
-  this.top = -1;
+  this.top = 0;
   this.items = [];
 }
 
 Queue.prototype.enqueue = function (item) {
-  this.top++;
-  this.items.push(item);
+  return this.items.push(item);
 };
 
 Queue.prototype.dequeue = function () {
-  if (this.top < 0 || this.top > this.items.length) {
-    return null;
-  }
-  const dequeued = this.items[this.top];
-  this.top++;
-  return dequeued;
+  return this.items.shift() || null;
 };
 
 Queue.prototype.peek = function () {
-  if (this.top < 0 || this.top > this.items.length) {
+  if (this.top < 0 || this.top > this.items.length || this.items.length === 0) {
     return null;
   }
   return this.items[this.top];
