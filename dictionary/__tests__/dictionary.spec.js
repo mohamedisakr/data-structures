@@ -13,8 +13,31 @@ describe("dictionary", () => {
 
   it("should add new item", () => {
     const dictionary = new Dictionary();
-    const phone = { johndoe: 123456789 };
-    dictionary.add("johndoe", 123456789);
+    const key = "johndoe";
+    const value = 123456789;
+    dictionary.add(key, value);
+    expect(dictionary.items["johndoe"]).toBe(123456789);
     expect(dictionary.isEmpty()).toBeFalsy();
+  });
+
+  it("find (null) key, should return undefind", () => {
+    const dictionary = new Dictionary();
+    const result = dictionary.find(null);
+    expect(result).toBeUndefined();
+  });
+
+  it("find non existing key, should return undefind", () => {
+    const dictionary = new Dictionary();
+    const result = dictionary.find("johndoe");
+    expect(result).toBeUndefined();
+  });
+
+  it("find existing key, should return its value", () => {
+    const dictionary = new Dictionary();
+    const key = "johndoe";
+    const value = 123456789;
+    dictionary.add(key, value);
+    const result = dictionary.find(key);
+    expect(result).toBe(value);
   });
 });

@@ -5,6 +5,7 @@ function Dictionary() {
 
 Dictionary.prototype.add = function (key, value) {
   const keyType = typeof key;
+
   if (keyType !== "string" && keyType !== "number") {
     throw Error("Key should be either string or number");
   }
@@ -15,6 +16,23 @@ Dictionary.prototype.add = function (key, value) {
 
   this.items[key] = value;
   this.size++;
+};
+
+Dictionary.prototype.find = function (key) {
+  if (key === null) {
+    return undefined;
+  }
+
+  const keyType = typeof key;
+  if (keyType !== "string" && keyType !== "number") {
+    return undefined;
+  }
+
+  if (this.items.hasOwnProperty(key)) {
+    return this.items[key];
+  }
+
+  return undefined;
 };
 
 Dictionary.prototype.isEmpty = function () {
