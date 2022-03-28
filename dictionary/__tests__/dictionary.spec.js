@@ -40,4 +40,28 @@ describe("dictionary", () => {
     const result = dictionary.find(key);
     expect(result).toBe(value);
   });
+
+  it("remove existing key, should decrease length", () => {
+    const dictionary = new Dictionary();
+    const key = "johndoe";
+    const value = 123456789;
+
+    dictionary.add(key, value);
+    expect(dictionary.length()).toBe(1);
+
+    dictionary.remove(key);
+    expect(dictionary.length()).toBe(0);
+  });
+
+  it("remove non existing key, should not decrease length", () => {
+    const dictionary = new Dictionary();
+    const key = "johndoe";
+    const value = 123456789;
+
+    dictionary.add(key, value);
+    expect(dictionary.length()).toBe(1);
+
+    dictionary.remove("any");
+    expect(dictionary.length()).toBe(1);
+  });
 });
