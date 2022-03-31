@@ -5,6 +5,10 @@ function Node(val, next = null) {
   this.next = next;
 }
 
+Node.prototype.toString = function () {
+  return `${this.val}, ${this.next}`;
+};
+
 function LinkedList() {
   this.head = null;
   this.tail = null;
