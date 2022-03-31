@@ -1,5 +1,5 @@
 function Node(val) {
-  this.val = val || null;
+  this.val = val; //|| null;
   this.next = null;
 }
 
@@ -93,7 +93,7 @@ LinkedList.prototype.itemAt = function (index) {
   return current.val;
 };
 
-LinkedList.prototype.remove = function (index) {
+LinkedList.prototype.removeByIndex = function (index) {
   if (index < 0 || index >= this.size) {
     return null;
   }
@@ -118,8 +118,37 @@ LinkedList.prototype.remove = function (index) {
   return current.val;
 };
 
+LinkedList.prototype.removeByValue = function (val) {
+  if (this.isEmpty()) {
+    return false;
+  }
+
+  let current = this.head;
+
+  if (current.val === val) {
+    console.log("head deletion");
+    this.head = current.next;
+    this.size--;
+    return true;
+  }
+
+  while (current.next != null) {
+    if (current.next.val == val) {
+      current.next = current.next.next;
+      return true;
+    }
+    current = current.next;
+  }
+
+  return false;
+};
+
 LinkedList.prototype.isEmpty = function () {
   return this.head === null && this.size === 0;
+};
+
+LinkedList.prototype.length = function () {
+  return this.size;
 };
 
 LinkedList.prototype.search = function (val) {
@@ -138,3 +167,38 @@ LinkedList.prototype.search = function (val) {
 };
 
 module.exports = { LinkedList, Node };
+
+// let prev = null;
+// let oldHead = this.head;
+
+// 1 -> (2) -> 3
+// for (
+//   let current = this.head;
+//   current.val === this.tail.val;
+//   current = current.next
+// ) {
+//   prev = current;
+//   if (current.val === val) {
+//     if (current.val === oldHead.val) {
+//       this.head = null;
+//       break;
+//     }
+//     current = current.next;
+//   }
+// }
+// while (current) {
+//   prev = current;
+//   if (current.val === val) {
+//     if (current.val === oldHead.val) {
+//       this.head = null;
+//       break;
+//     }
+//     current = current.next;
+//     // prev.next = current.next;
+//     // return counter;
+//   }
+//   current = current.next;
+// }
+
+// this.size--;
+// return prev.val;

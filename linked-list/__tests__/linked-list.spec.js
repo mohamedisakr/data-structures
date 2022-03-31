@@ -80,7 +80,7 @@ describe("pushAtTail", () => {
 });
 
 describe("pushAtNth", () => {
-  it("pushAtNth should return null if index < 0", () => {
+  it("should return null if index < 0", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
@@ -91,7 +91,7 @@ describe("pushAtNth", () => {
     expect(linkedList.size).toBe(4);
   });
 
-  it("pushAtNth should return null if index > size", () => {
+  it("should return null if index > size", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
@@ -102,7 +102,7 @@ describe("pushAtNth", () => {
     expect(linkedList.size).toBe(4);
   });
 
-  it("pushAtNth 4 nodes, the 4th should be the list head & first the tail", () => {
+  it("4 nodes, the 4th should be the list head & first the tail", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
@@ -186,59 +186,59 @@ describe("itemAt", () => {
   });
 });
 
-describe("remove", () => {
-  it("remove should return null, if it's a single node linked list", () => {
+describe("removeByIndex", () => {
+  it("should return null, if it's a single node linked list", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
 
-    const removedIndex = linkedList.remove(0);
+    const removedIndex = linkedList.removeByIndex(0);
     expect(removedIndex).toBe(1);
     expect(linkedList.head).toBeNull();
     expect(linkedList.size).toBe(0);
   });
 
-  it("remove should return null if index < 0", () => {
+  it("should return null if index < 0", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
     linkedList.push(3);
     linkedList.push(4);
 
-    const removedIndex = linkedList.remove(-1);
+    const removedIndex = linkedList.removeByIndex(-1);
     expect(removedIndex).toBeNull();
   });
 
-  it("remove should return null if index > size", () => {
+  it("should return null if index > size", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
     linkedList.push(3);
     linkedList.push(4);
 
-    const removedIndex = linkedList.remove(7);
+    const removedIndex = linkedList.removeByIndex(7);
     expect(removedIndex).toBeNull();
   });
 
-  it("remove should return item at home, if index = 0", () => {
+  it("should return item at home, if index = 0", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
     linkedList.push(3);
     linkedList.push(4);
 
-    const removedIndex = linkedList.remove(0);
+    const removedIndex = linkedList.removeByIndex(0);
     expect(removedIndex).toBe(1);
     expect(linkedList.head.val).toBe(2);
   });
 
-  it("remove should return item at middle, if index > 0", () => {
+  it("should return item at middle, if index > 0", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
     linkedList.push(3);
     linkedList.push(4);
 
-    const removedIndex = linkedList.remove(2);
+    const removedIndex = linkedList.removeByIndex(2);
     expect(removedIndex).toBe(3);
   });
 
@@ -249,13 +249,77 @@ describe("remove", () => {
     linkedList.push(3);
     linkedList.push(4);
 
-    const removedIndex = linkedList.remove(3);
+    const removedIndex = linkedList.removeByIndex(3);
     expect(removedIndex).toBe(4);
   });
 });
 
+describe("removeByValue", () => {
+  it("empty list, should return false", () => {
+    const linkedList = new LinkedList();
+    const removedValue = linkedList.removeByValue(1);
+    expect(removedValue).toBeFalsy();
+  });
+
+  it("1 existing value should empty the list, return true", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+
+    const removedValue = linkedList.removeByValue(1);
+    console.log("test head node ", linkedList.head);
+    // expect(linkedList.head).toBeNull();
+    expect(linkedList.length()).toBe(0);
+    expect(removedValue).toBeTruthy();
+  });
+
+  it("1 non-existing value should not empty the list, return false", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+
+    const removedValue = linkedList.removeByValue(2);
+    console.log("test head node ", linkedList.head);
+    // expect(linkedList.head).toBeNull();
+    expect(removedValue).toBeFalsy();
+    expect(linkedList.length()).toBe(1);
+  });
+
+  it.skip("should return item at tail", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const removedValue = linkedList.removeByValue(4);
+    expect(removedValue).toBe(4);
+    expect(linkedList.length()).toBe(3);
+  });
+
+  // it("should return item at middle, if index > 0", () => {
+  //   const linkedList = new LinkedList();
+  //   linkedList.push(1);
+  //   linkedList.push(2);
+  //   linkedList.push(3);
+  //   linkedList.push(4);
+
+  //   const removedIndex = linkedList.removeByIndex(2);
+  //   expect(removedIndex).toBe(3);
+  // });
+
+  // it("remove should return item at end, if index = size-1", () => {
+  //   const linkedList = new LinkedList();
+  //   linkedList.push(1);
+  //   linkedList.push(2);
+  //   linkedList.push(3);
+  //   linkedList.push(4);
+
+  //   const removedIndex = linkedList.removeByIndex(3);
+  //   expect(removedIndex).toBe(4);
+  // });
+});
+
 describe("search", () => {
-  it("search should return null if value does not exist", () => {
+  it("should return null if value does not exist", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
@@ -266,7 +330,7 @@ describe("search", () => {
     expect(searchIndex).toBeNull();
   });
 
-  it("search (head) should return value index if value exists", () => {
+  it("(head) should return value index if value exists", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
@@ -277,7 +341,7 @@ describe("search", () => {
     expect(searchIndex).toBe(0);
   });
 
-  it("search (middle) should return value index if value exists", () => {
+  it("(middle) should return value index if value exists", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
@@ -288,11 +352,57 @@ describe("search", () => {
     expect(searchIndex).toBe(2);
   });
 
-  it("search (tail) should return value index if value exists", () => {
+  it("(tail) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(10);
+    linkedList.push(20);
+    linkedList.push(30);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(4);
+    expect(searchIndex).toBe(3);
+  });
+});
+
+describe("search", () => {
+  it("should return null if value does not exist", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
     linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(7);
+    expect(searchIndex).toBeNull();
+  });
+
+  it("(head) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(1);
+    expect(searchIndex).toBe(0);
+  });
+
+  it("(middle) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(3);
+    expect(searchIndex).toBe(2);
+  });
+
+  it("(tail) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(10);
+    linkedList.push(20);
+    linkedList.push(30);
     linkedList.push(4);
 
     const searchIndex = linkedList.search(4);
