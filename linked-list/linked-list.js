@@ -37,16 +37,10 @@ LinkedList.prototype.pushAtTail = function (val) {
     this.head = newNode;
     this.tail = newNode;
   } else {
-    // 3 -> 2 -> 1
+    // 1 -> 2 -> 3
     const oldTail = this.tail;
     oldTail.next = newNode;
     this.tail = newNode;
-
-    // let current = oldHead;
-    // while (current.next) {
-    //   current = current.next;
-    // }
-    // this.tail = current;
   }
   this.size++;
 };

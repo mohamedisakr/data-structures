@@ -1,6 +1,7 @@
 const { LinkedList, Node } = require("../linked-list");
 
-describe("linked list", () => {
+// describe("linked list", () => {
+describe("empty", () => {
   it("create empty linked list should be instantiated", () => {
     const linkedList = new LinkedList();
     expect(linkedList).not.toBeNull();
@@ -10,8 +11,10 @@ describe("linked list", () => {
     const linkedList = new LinkedList();
     expect(linkedList.isEmpty()).toBeTruthy();
   });
+});
 
-  it("pushAtHead only one node, should be the list head", () => {
+describe("pushAtHead", () => {
+  it("only one node, should be the list head", () => {
     const linkedList = new LinkedList();
     linkedList.pushAtHead(1);
     const { head } = linkedList;
@@ -19,7 +22,7 @@ describe("linked list", () => {
     expect(head.val).toBe(1);
   });
 
-  it("pushAtHead 2 nodes, the 2nd should be the list head", () => {
+  it("2 nodes, the 2nd should be the list head", () => {
     const linkedList = new LinkedList();
     linkedList.pushAtHead(1);
     linkedList.pushAtHead(2);
@@ -28,7 +31,7 @@ describe("linked list", () => {
     expect(head.val).toBe(2);
   });
 
-  it("pushAtHead 4 nodes, the 4th should be the list head & first the tail", () => {
+  it("4 nodes, the 4th should be the list head & first the tail", () => {
     const linkedList = new LinkedList();
     linkedList.pushAtHead(1);
     linkedList.pushAtHead(2);
@@ -40,8 +43,10 @@ describe("linked list", () => {
     expect(head.val).toBe(4);
     expect(tail.val).toBe(1);
   });
+});
 
-  it("pushAtTail only one node, should be the list head & tail as well", () => {
+describe("pushAtTail", () => {
+  it("only one node, should be the list head & tail as well", () => {
     const linkedList = new LinkedList();
     linkedList.pushAtTail(1);
     const { head, tail } = linkedList;
@@ -50,7 +55,7 @@ describe("linked list", () => {
     expect(tail.val).toBe(1);
   });
 
-  it("pushAtTail 2 nodes, the 2nd should be the list head", () => {
+  it("2 nodes, the 2nd should be the list head", () => {
     const linkedList = new LinkedList();
     linkedList.pushAtTail(1);
     linkedList.pushAtTail(2);
@@ -60,7 +65,7 @@ describe("linked list", () => {
     expect(tail.val).toBe(2);
   });
 
-  it("pushAtTail 4 nodes, the 4th should be the list head & first the tail", () => {
+  it("4 nodes, the 4th should be the list head & first the tail", () => {
     const linkedList = new LinkedList();
     linkedList.pushAtTail(1);
     linkedList.pushAtTail(2);
@@ -72,7 +77,9 @@ describe("linked list", () => {
     expect(head.val).toBe(1);
     expect(tail.val).toBe(4);
   });
+});
 
+describe("pushAtNth", () => {
   it("pushAtNth should return null if index < 0", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
@@ -110,7 +117,9 @@ describe("linked list", () => {
     expect(head.next.next.next.val).toBe(5);
     expect(tail.val).toBe(4);
   });
+});
 
+describe("push", () => {
   it("push first item, should be the list head", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
@@ -140,7 +149,9 @@ describe("linked list", () => {
     expect(head.next.next.val).toBe(3);
     expect(head.next.next.next.val).toBe(4);
   });
+});
 
+describe("itemAt", () => {
   it("itemAt should return null if index < 0", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
@@ -173,7 +184,9 @@ describe("linked list", () => {
     const itemAtIndex = linkedList.itemAt(1);
     expect(itemAtIndex).toBe(2);
   });
+});
 
+describe("remove", () => {
   it("remove should return null, if it's a single node linked list", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
@@ -239,7 +252,9 @@ describe("linked list", () => {
     const removedIndex = linkedList.remove(3);
     expect(removedIndex).toBe(4);
   });
+});
 
+describe("search", () => {
   it("search should return null if value does not exist", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
