@@ -1,5 +1,5 @@
 const { LinkedList, Node } = require("../linked-list");
-
+// Node
 // describe("linked list", () => {
 describe("empty", () => {
   it("create empty linked list should be instantiated", () => {
@@ -266,7 +266,7 @@ describe("removeByValue", () => {
     linkedList.push(1);
 
     const removedValue = linkedList.removeByValue(1);
-    console.log("test head node ", linkedList.head);
+    // console.log("test head node ", linkedList.head);
     // expect(linkedList.head).toBeNull();
     expect(linkedList.length()).toBe(0);
     expect(removedValue).toBeTruthy();
@@ -277,7 +277,7 @@ describe("removeByValue", () => {
     linkedList.push(1);
 
     const removedValue = linkedList.removeByValue(2);
-    console.log("test head node ", linkedList.head);
+    // console.log("test head node ", linkedList.head);
     // expect(linkedList.head).toBeNull();
     expect(removedValue).toBeFalsy();
     expect(linkedList.length()).toBe(1);
@@ -396,25 +396,5 @@ describe("search", () => {
 
     const searchIndex = linkedList.search(4);
     expect(searchIndex).toBe(3);
-  });
-});
-
-describe("node", () => {
-  it("create empty node should be instantiated", () => {
-    const node = new Node();
-    expect(node).toBeDefined(); //.not.toBeNull();
-  });
-
-  it("create node with value, should be instantiated", () => {
-    const node = new Node(1);
-    expect(node).toBeDefined(); //.not.toBeNull();
-    expect(node.val).toBe(1);
-  });
-
-  it("create 2 linked node, second node not null", () => {
-    const firstNode = new Node(1);
-    const secondNode = new Node(2);
-    firstNode.next = secondNode;
-    expect(firstNode.next).not.toBeNull();
   });
 });
