@@ -1,6 +1,6 @@
-function Node(val) {
-  this.val = val; //|| null;
-  this.next = null;
+function Node(val, next = null) {
+  this.val = val || null;
+  this.next = next;
 }
 
 function LinkedList() {
@@ -126,15 +126,16 @@ LinkedList.prototype.removeByValue = function (val) {
   let current = this.head;
 
   if (current.val === val) {
-    console.log("head deletion");
     this.head = current.next;
     this.size--;
     return true;
   }
 
-  while (current.next != null) {
+  // 1 -> 2 -> 3 -> (4) -> 5
+  while (current.next !== null) {
     if (current.next.val == val) {
       current.next = current.next.next;
+      this.size--;
       return true;
     }
     current = current.next;

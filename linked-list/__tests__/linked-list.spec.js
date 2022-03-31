@@ -283,7 +283,7 @@ describe("removeByValue", () => {
     expect(linkedList.length()).toBe(1);
   });
 
-  it.skip("should return item at tail", () => {
+  it("node at tail, should return item true", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
@@ -291,31 +291,20 @@ describe("removeByValue", () => {
     linkedList.push(4);
 
     const removedValue = linkedList.removeByValue(4);
-    expect(removedValue).toBe(4);
+    expect(removedValue).toBeTruthy();
     expect(linkedList.length()).toBe(3);
   });
 
-  // it("should return item at middle, if index > 0", () => {
-  //   const linkedList = new LinkedList();
-  //   linkedList.push(1);
-  //   linkedList.push(2);
-  //   linkedList.push(3);
-  //   linkedList.push(4);
+  it("node at middle, should return true", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
 
-  //   const removedIndex = linkedList.removeByIndex(2);
-  //   expect(removedIndex).toBe(3);
-  // });
-
-  // it("remove should return item at end, if index = size-1", () => {
-  //   const linkedList = new LinkedList();
-  //   linkedList.push(1);
-  //   linkedList.push(2);
-  //   linkedList.push(3);
-  //   linkedList.push(4);
-
-  //   const removedIndex = linkedList.removeByIndex(3);
-  //   expect(removedIndex).toBe(4);
-  // });
+    const removedIndex = linkedList.removeByValue(2);
+    expect(removedIndex).toBeTruthy();
+  });
 });
 
 describe("search", () => {
@@ -413,12 +402,13 @@ describe("search", () => {
 describe("node", () => {
   it("create empty node should be instantiated", () => {
     const node = new Node();
-    expect(node).not.toBeNull();
+    expect(node).toBeDefined(); //.not.toBeNull();
   });
 
-  it("create value node should be instantiated", () => {
+  it("create node with value, should be instantiated", () => {
     const node = new Node(1);
-    expect(node).not.toBeNull();
+    expect(node).toBeDefined(); //.not.toBeNull();
+    expect(node.val).toBe(1);
   });
 
   it("create 2 linked node, second node not null", () => {
