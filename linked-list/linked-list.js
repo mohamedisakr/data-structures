@@ -51,6 +51,7 @@ LinkedList.prototype.pushAtTail = function (val) {
   this.size++;
 };
 
+// TODO: has to be test thoroughly
 LinkedList.prototype.push = function (val) {
   const newNode = new Node(val);
   // if linked list is empty
@@ -124,6 +125,28 @@ LinkedList.prototype.removeByIndex = function (index) {
   return current.val;
 };
 
+LinkedList.prototype.removeAtHead = function () {
+  // 3 cases
+  // (1) empty list
+  if (this.isEmpty()) {
+    return false;
+  }
+
+  // (2) 1 node list
+  if (this.head && this.head.next === null) {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+    return true;
+  }
+
+  // (3) > 1 node list
+  // 1 -> 2 -> 3
+  this.head = this.head.next;
+  this.size--;
+  return true;
+};
+
 LinkedList.prototype.removeByValue = function (val) {
   if (this.isEmpty()) {
     return false;
@@ -151,7 +174,7 @@ LinkedList.prototype.removeByValue = function (val) {
 };
 
 LinkedList.prototype.isEmpty = function () {
-  return this.head === null && this.size === 0;
+  return this.head === null; //&& this.size === 0;
 };
 
 LinkedList.prototype.length = function () {

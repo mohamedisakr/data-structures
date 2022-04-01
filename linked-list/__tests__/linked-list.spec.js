@@ -307,49 +307,44 @@ describe("removeByValue", () => {
   });
 });
 
-describe("search", () => {
-  it("should return null if value does not exist", () => {
+describe("removeAtHead", () => {
+  it("should return false if linked list is empty", () => {
+    const linkedList = new LinkedList();
+    const removedValue = linkedList.removeAtHead();
+    expect(removedValue).toBeFalsy();
+  });
+
+  it("should empty linked list if it has 1 node only", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(4);
+    expect(linkedList.length()).toBe(1);
+    expect(linkedList.head).toBeDefined();
+    expect(linkedList.tail).toBeDefined();
+
+    const removedValue = linkedList.removeAtHead();
+
+    expect(removedValue).toBeTruthy();
+    expect(linkedList.length()).toBe(0);
+    expect(linkedList.head).toBeNull();
+    expect(linkedList.tail).toBeNull();
+  });
+
+  it("should head next node to be the new head if list has more than 1 node", () => {
     const linkedList = new LinkedList();
     linkedList.push(1);
     linkedList.push(2);
     linkedList.push(3);
     linkedList.push(4);
+    expect(linkedList.length()).toBe(4);
+    expect(linkedList.head).toBeDefined();
+    expect(linkedList.tail).toBeDefined();
 
-    const searchIndex = linkedList.search(7);
-    expect(searchIndex).toBeNull();
-  });
+    const removedValue = linkedList.removeAtHead();
 
-  it("(head) should return value index if value exists", () => {
-    const linkedList = new LinkedList();
-    linkedList.push(1);
-    linkedList.push(2);
-    linkedList.push(3);
-    linkedList.push(4);
-
-    const searchIndex = linkedList.search(1);
-    expect(searchIndex).toBe(0);
-  });
-
-  it("(middle) should return value index if value exists", () => {
-    const linkedList = new LinkedList();
-    linkedList.push(1);
-    linkedList.push(2);
-    linkedList.push(3);
-    linkedList.push(4);
-
-    const searchIndex = linkedList.search(3);
-    expect(searchIndex).toBe(2);
-  });
-
-  it("(tail) should return value index if value exists", () => {
-    const linkedList = new LinkedList();
-    linkedList.push(10);
-    linkedList.push(20);
-    linkedList.push(30);
-    linkedList.push(4);
-
-    const searchIndex = linkedList.search(4);
-    expect(searchIndex).toBe(3);
+    expect(removedValue).toBeTruthy();
+    expect(linkedList.length()).toBe(3);
+    expect(linkedList.head.val).toBe(2);
+    expect(linkedList.tail.val).toBe(4);
   });
 });
 
@@ -398,3 +393,51 @@ describe("search", () => {
     expect(searchIndex).toBe(3);
   });
 });
+
+/*
+describe("search", () => {
+  it("should return null if value does not exist", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(7);
+    expect(searchIndex).toBeNull();
+  });
+
+  it("(head) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(1);
+    expect(searchIndex).toBe(0);
+  });
+
+  it("(middle) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(3);
+    expect(searchIndex).toBe(2);
+  });
+
+  it("(tail) should return value index if value exists", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(10);
+    linkedList.push(20);
+    linkedList.push(30);
+    linkedList.push(4);
+
+    const searchIndex = linkedList.search(4);
+    expect(searchIndex).toBe(3);
+  });
+});
+*/
