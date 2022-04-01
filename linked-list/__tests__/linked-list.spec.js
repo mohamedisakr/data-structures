@@ -388,6 +388,42 @@ describe("removeAtTail", () => {
   });
 });
 
+describe("reverse", () => {
+  it("should return empty linked list if linked list is empty", () => {
+    const linkedList = new LinkedList();
+    const list = linkedList.reverse();
+    expect(list).toBeDefined();
+    expect(list.length()).toBe(0);
+    expect(list.head).toBeNull();
+    expect(list.tail).toBeNull();
+  });
+
+  it("should return the same list if it has 1 node only", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(4);
+
+    const list = linkedList.reverse();
+
+    expect(list.length()).toBe(1);
+    expect(list.head).toBeDefined();
+    expect(list.tail).toBeDefined();
+  });
+
+  it("should tail be the new head and vice versa if list has more than 1 node", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const reversed = linkedList.reverse();
+
+    expect(reversed.length()).toBe(4);
+    expect(reversed.head.val).toBe(4);
+    expect(reversed.tail.val).toBe(1);
+  });
+});
+
 describe("search", () => {
   it("should return null if value does not exist", () => {
     const linkedList = new LinkedList();

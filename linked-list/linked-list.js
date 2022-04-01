@@ -202,6 +202,35 @@ LinkedList.prototype.removeByValue = function (val) {
   return false;
 };
 
+LinkedList.prototype.reverse = function () {
+  // 3 cases
+  // (1) empty list
+  if (this.isEmpty()) {
+    // return new LinkedList();
+    return this;
+  }
+
+  // (2) 1 node list
+  if (this.head && this.head.next === null) {
+    return this;
+  }
+
+  // (3) > 1 node list
+  let prev = null;
+  let current = this.head;
+  let next = null;
+
+  while (current) {
+    next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  this.tail = this.head;
+  this.head = prev;
+  return this;
+};
+
 LinkedList.prototype.isEmpty = function () {
   return this.head === null; //&& this.size === 0;
 };
