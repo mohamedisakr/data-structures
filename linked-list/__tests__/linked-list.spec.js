@@ -348,6 +348,46 @@ describe("removeAtHead", () => {
   });
 });
 
+describe("removeAtTail", () => {
+  it("should return false if linked list is empty", () => {
+    const linkedList = new LinkedList();
+    const removedValue = linkedList.removeAtTail();
+    expect(removedValue).toBeFalsy();
+  });
+
+  it("should empty linked list if it has 1 node only", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(4);
+    expect(linkedList.length()).toBe(1);
+    expect(linkedList.head).toBeDefined();
+    expect(linkedList.tail).toBeDefined();
+
+    const removedValue = linkedList.removeAtTail();
+
+    expect(removedValue).toBeTruthy();
+    expect(linkedList.length()).toBe(0);
+    expect(linkedList.head).toBeNull();
+    expect(linkedList.tail).toBeNull();
+  });
+
+  it("should tail previous node to be the new tail if list has more than 1 node", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+    expect(linkedList.length()).toBe(4);
+    expect(linkedList.head).toBeDefined();
+    expect(linkedList.tail).toBeDefined();
+
+    const removedValue = linkedList.removeAtTail();
+
+    expect(removedValue).toBeTruthy();
+    expect(linkedList.length()).toBe(3);
+    expect(linkedList.tail.val).toBe(3);
+  });
+});
+
 describe("search", () => {
   it("should return null if value does not exist", () => {
     const linkedList = new LinkedList();

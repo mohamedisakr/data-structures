@@ -147,6 +147,35 @@ LinkedList.prototype.removeAtHead = function () {
   return true;
 };
 
+LinkedList.prototype.removeAtTail = function () {
+  // 3 cases
+  // (1) empty list
+  if (this.isEmpty()) {
+    return false;
+  }
+
+  // (2) 1 node list
+  if (this.head && this.head.next === null) {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+    return true;
+  }
+
+  // (3) > 1 node list
+  let current = this.head;
+  let prev = null;
+  // 1 -> 2 -> 3 -> 4 -> (5)
+  // 1 -> 2 -> 3 -> (4)
+  while (current.next !== null) {
+    prev = current;
+    current = current.next;
+  }
+  this.tail = prev;
+  this.size--;
+  return true;
+};
+
 LinkedList.prototype.removeByValue = function (val) {
   if (this.isEmpty()) {
     return false;
