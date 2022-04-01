@@ -205,13 +205,8 @@ LinkedList.prototype.removeByValue = function (val) {
 LinkedList.prototype.reverse = function () {
   // 3 cases
   // (1) empty list
-  if (this.isEmpty()) {
-    // return new LinkedList();
-    return this;
-  }
-
   // (2) 1 node list
-  if (this.head && this.head.next === null) {
+  if (this.isEmpty() || (this.head && this.head.next === null)) {
     return this;
   }
 
@@ -221,14 +216,45 @@ LinkedList.prototype.reverse = function () {
   let next = null;
 
   while (current) {
+    // save next node
     next = current.next;
+    // link next to previous
     current.next = prev;
+    // move 1 step forward
     prev = current;
     current = next;
   }
   this.tail = this.head;
   this.head = prev;
   return this;
+};
+
+/**
+ * check if the linked list has loop or not
+ * @returns ture if the linked list has loop, false otherwise
+ */
+LinkedList.prototype.hasCycle = function () {
+  // Floyd’s Cycle-Finding Algorithm
+  // 3 cases
+  // (1) empty list
+  // (2) 1 node list
+  if (this.isEmpty() || (this.head && this.head.next === null)) {
+    return false;
+  }
+
+  // (3) > 1 node list
+  let fast = this.head.next;
+  let slow = this.head;
+
+  while (fast !== null && fast.next !== null && slow !== null) {
+    if (fast === slow) {
+      return true;
+    }
+
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  return false;
 };
 
 LinkedList.prototype.isEmpty = function () {

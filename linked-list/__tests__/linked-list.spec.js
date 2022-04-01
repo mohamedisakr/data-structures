@@ -424,6 +424,46 @@ describe("reverse", () => {
   });
 });
 
+describe("hasCycle", () => {
+  it("should return false if linked list is empty", () => {
+    const linkedList = new LinkedList();
+    const withCycle = linkedList.hasCycle();
+    expect(withCycle).toBeFalsy();
+  });
+
+  it("should return false if linked list has 1 node only", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    const withCycle = linkedList.hasCycle();
+    expect(withCycle).toBeFalsy();
+  });
+
+  it("should return false if linked list has no cycle", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const withCycle = linkedList.hasCycle();
+
+    expect(withCycle).toBeFalsy();
+  });
+
+  it("should return true if linked list has cycle", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+    linkedList.head.next.next.next.next = linkedList.head;
+
+    const withCycle = linkedList.hasCycle();
+
+    expect(withCycle).toBeTruthy();
+  });
+});
+
 describe("search", () => {
   it("should return null if value does not exist", () => {
     const linkedList = new LinkedList();
