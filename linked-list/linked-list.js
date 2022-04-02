@@ -268,22 +268,19 @@ LinkedList.prototype.removeDuplicates = function () {
   // (2) 1 node list
   if (this.head && this.head.next === null) {
     set.add(this.head.val);
+    return set;
   }
 
   // (3) > 1 node list
   let current = this.head;
-  let prev = null;
 
-  while (current != null) {
-    // If current value is seen before
-    if (set.has(current.val)) {
-      prev.next = current.next;
-    } else {
+  while (current) {
+    if (!set.has(current.val)) {
       set.add(current.val);
-      prev = current;
     }
     current = current.next;
   }
+  return set;
 };
 
 LinkedList.prototype.toArray = function () {

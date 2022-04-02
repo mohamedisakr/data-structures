@@ -464,7 +464,7 @@ describe("hasCycle", () => {
   });
 });
 
-describe.skip("removeDuplicates", () => {
+describe("removeDuplicates", () => {
   it("should return null if linked list is empty", () => {
     const linkedList = new LinkedList();
     const set = linkedList.removeDuplicates();
@@ -476,8 +476,8 @@ describe.skip("removeDuplicates", () => {
     linkedList.push(4);
 
     const set = linkedList.removeDuplicates();
-    console.log("set : ", set);
-    // expect(set).toEqual({4});
+
+    expect(set.size).toBe(1);
   });
 
   it("should tail be the new head and vice versa if list has more than 1 node", () => {
@@ -487,11 +487,9 @@ describe.skip("removeDuplicates", () => {
     linkedList.push(3);
     linkedList.push(4);
 
-    const reversed = linkedList.reverse();
+    const noDuplicates = linkedList.removeDuplicates();
 
-    expect(reversed.length()).toBe(4);
-    expect(reversed.head.val).toBe(4);
-    expect(reversed.tail.val).toBe(1);
+    expect(noDuplicates.size).toBe(4);
   });
 });
 
