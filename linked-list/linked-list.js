@@ -257,6 +257,59 @@ LinkedList.prototype.hasCycle = function () {
   return false;
 };
 
+LinkedList.prototype.removeDuplicates = function () {
+  // 3 cases
+  // (1) empty list
+  if (this.isEmpty()) {
+    return null;
+  }
+
+  const set = new Set();
+  // (2) 1 node list
+  if (this.head && this.head.next === null) {
+    set.add(this.head.val);
+  }
+
+  // (3) > 1 node list
+  let current = this.head;
+  let prev = null;
+
+  while (current != null) {
+    // If current value is seen before
+    if (set.has(current.val)) {
+      prev.next = current.next;
+    } else {
+      set.add(current.val);
+      prev = current;
+    }
+    current = current.next;
+  }
+};
+
+LinkedList.prototype.toArray = function () {
+  const arr = [];
+  // 3 cases
+  // (1) empty list
+  if (this.isEmpty()) {
+    return arr;
+  }
+
+  // (2) 1 node list
+  if (this.head && this.head.next === null) {
+    arr.push(this.head.val);
+    return arr;
+  }
+
+  // (3) > 1 node list
+  let current = this.head;
+  while (current) {
+    arr.push(current.val);
+    current = current.next;
+  }
+
+  return arr;
+};
+
 LinkedList.prototype.isEmpty = function () {
   return this.head === null; //&& this.size === 0;
 };

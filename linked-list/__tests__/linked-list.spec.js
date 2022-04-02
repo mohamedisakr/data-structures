@@ -464,6 +464,70 @@ describe("hasCycle", () => {
   });
 });
 
+describe.skip("removeDuplicates", () => {
+  it("should return null if linked list is empty", () => {
+    const linkedList = new LinkedList();
+    const set = linkedList.removeDuplicates();
+    expect(set).toBeNull();
+  });
+
+  it("should return set with only 1 nodet, if it has 1 node only", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(4);
+
+    const set = linkedList.removeDuplicates();
+    console.log("set : ", set);
+    // expect(set).toEqual({4});
+  });
+
+  it("should tail be the new head and vice versa if list has more than 1 node", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const reversed = linkedList.reverse();
+
+    expect(reversed.length()).toBe(4);
+    expect(reversed.head.val).toBe(4);
+    expect(reversed.tail.val).toBe(1);
+  });
+});
+
+describe("toArray", () => {
+  it("should return empty array if linked list is empty", () => {
+    const linkedList = new LinkedList();
+    const arr = linkedList.toArray();
+    expect(arr).toBeDefined();
+    expect(arr.length).toBe(0);
+    expect(arr).toEqual([]);
+  });
+
+  it("should return 1 element array if list has 1 node only", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(4);
+
+    const arr = linkedList.toArray();
+    expect(arr).toBeDefined();
+    expect(arr.length).toBe(1);
+    expect(arr).toEqual([4]);
+  });
+
+  it("should return all nodes values", () => {
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(2);
+    linkedList.push(3);
+    linkedList.push(4);
+
+    const arr = linkedList.toArray();
+    expect(arr).toBeDefined();
+    expect(arr.length).toBe(4);
+    expect(arr).toEqual([1, 2, 3, 4]);
+  });
+});
+
 describe("search", () => {
   it("should return null if value does not exist", () => {
     const linkedList = new LinkedList();
