@@ -3,6 +3,10 @@
 http://web.mit.edu/6.031/www/sp21/classes/10-abstract-data-types/
 https://web.mit.edu/6.031/www/sp21/classes/19-programming-with-adts/
 
+### Applications
+
+explain applications with examples
+
 ### BASIC OPERATIONS:
 
 #### Some of the basic operations that can be performed on a linked list are
