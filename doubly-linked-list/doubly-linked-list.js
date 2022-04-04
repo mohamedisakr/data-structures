@@ -16,4 +16,8 @@ function LinkedList() {
   this.size = 0;
 }
 
+LinkedList.prototype.isEmpty = function () {
+  return this.head === null;
+};
+
 module.exports = { LinkedList, Node };

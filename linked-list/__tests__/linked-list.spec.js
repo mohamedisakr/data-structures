@@ -1,6 +1,5 @@
-const { LinkedList, Node } = require("../linked-list");
-// Node
-// describe("linked list", () => {
+const { LinkedList } = require("../linked-list");
+
 describe("empty", () => {
   it("create empty linked list should be instantiated", () => {
     const linkedList = new LinkedList();
